@@ -14,8 +14,10 @@ class Ares(athena: ActorRef) extends Actor {
   }
 
   def receive = {
-    case Terminated => 
+    // you have to destructure this, otherwise it will not match
+    case Terminated(a) => 
       context.stop(self)
+    case _ => println("something else happened to athena...")
   }
 }
 
